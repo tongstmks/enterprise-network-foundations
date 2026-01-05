@@ -1,26 +1,35 @@
 # Enterprise Network Foundations
 
-Virtual enterprise network design with routing and segmentation
-
 ## Project Goal
 
-Design and deploy a segmented enterprise network using proper IP addressing
-and dynamic routing.
+Design and deploy a segmented internal enterprise network with scalable IP addressing and dynamic routing.
 
-## Scope
+## Scenario
 
-- Internal network only
-- Multiple departments
-- Scalable IP design
-- Dynamic routing (OSPF)
+You are a junior network engineer tasked with designing a small enterprise internal network for a growing company.
 
-## Tools Used
+### Business Requirements
 
-- GNS3
-- VirtualBox
-- Ubuntu Linux
-- GitHub
+- 3 departments
+- Network segmentation
+- Future growth planning
+- Remote workers (VPN consideration)
+- Potential expansion into 2–5 cities
+- No Internet connectivity (internal-only network)
 
-## Status
+### Responsibilities
 
-In progress
+- IP addressing design
+- Routing protocol selection
+- Logical segmentation
+- Technical documentation
+
+## Architecture Decisions
+
+This project focuses on _design-first networking_, where decisions are documented before implementation.
+
+Key design areas:
+
+- Departmental segmentation
+- Scalable IP addressing
+- Dynamic routing
