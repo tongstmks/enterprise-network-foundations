@@ -13,6 +13,36 @@ OSPF was chosen because it:
 
 The goal was not just to make the network work, but to design for growth.
 
+## Current Routing State (Phase 1)
+
+In the current phase of the project:
+
+- Inter-subnet routing is performed by a single router
+- Each subnet is directly connected via a dedicated router interface
+- No dynamic routing protocol is enabled yet
+- Routing decisions rely on connected routes only
+
+This phase validates:
+
+- IP addressing correctness
+- Layer 2 connectivity
+- Gateway reachability
+- Host-to-gateway communication
+
+Dynamic routing will be introduced once the physical and logical
+foundations are verified.
+
+### Why OSPF Is Deferred
+
+OSPF configuration is intentionally deferred to avoid masking
+fundamental design or connectivity issues.
+
+Introducing OSPF only after verifying connected routing ensures:
+
+- Cleaner troubleshooting
+- Clearer understanding of routing behavior
+- Stronger foundational skills
+
 ## Alternatives Considered
 
 ### Static Routing
