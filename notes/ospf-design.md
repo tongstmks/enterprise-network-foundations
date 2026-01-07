@@ -36,6 +36,15 @@ The initial single-router topology validates addressing and segmentation. A seco
 - Route advertisement
 - Convergence testing
 
+## OSPF Topology Scope
+
+The initial OSPF deployment consists of two routers:
+
+- A core router that connects all departmental subnets
+- A second router representing future organizational expansion (e.g. another site or building)
+
+The routers are connected via a dedicated point-to-point transit network. Departmental networks remain directly connected only to the core router.
+
 ## Area Design
 
 A single OSPF backbone area (Area 0) is used.
@@ -45,6 +54,8 @@ This simplifies the design while aligning with best practices for small-to-mediu
 ## Advertising Strategy
 
 Only explicitly defined networks will be advertised into OSPF.
+
+Department subnets and router-to-router transit networks are included, while non-essential or future networks are intentionally excluded to maintain routing clarity and control.
 
 This avoids unintended route propagation and mirrors production best practices where route control and predictability are prioritized.
 
