@@ -40,8 +40,9 @@ The initial single-router topology validates addressing and segmentation. A seco
 
 The initial OSPF deployment consists of two routers:
 
-- A core router that connects all departmental subnets
-- A second router representing future organizational expansion (e.g. another site or building)
+- A core router (FRRouting-1) that connects all departmental subnets
+- A secondary router (FRRouting-2) representing future organizational expansion
+  such as another site, building, or WAN edge
 
 The routers are connected via a dedicated point-to-point transit network. Departmental networks remain directly connected only to the core router.
 
@@ -62,3 +63,49 @@ This avoids unintended route propagation and mirrors production best practices w
 ## Summary
 
 OSPF is not required for the initial network to function but is essential for long-term scalability. By designing with OSPF in mind from the beginning, the network can grow without requiring fundamental architectural changes.
+
+## Initial OSPF Deployment
+
+OSPF was first enabled on the router interconnect only.
+This allowed validation of neighbor formation and protocol behavior
+before advertising production department subnets.
+
+This phased activation mirrors real-world deployment practices.
+
+## Department Subnet Advertisement
+
+Department LAN subnets were advertised into OSPF from FRRouting-1 only. FRRouting-2 does not advertise any departmental networks in this phase,
+as it has no directly connected LAN segments.
+
+This reflects a typical access-to-core routing model, where edge routers
+inject local networks into the routing domain.
+
+Explicit network statements were used to ensure precise control over
+route propagation.
+
+## Design Non-Goals (This Phase)
+
+The following OSPF features are intentionally excluded at this stage:
+
+- Multi-area OSPF design
+- Route summarization
+- Authentication
+- Load balancing and equal-cost multipath tuning
+- Redistribution from other routing protocols
+
+These features will be introduced incrementally as the network topology
+and scale justify their complexity.
+
+## OSPF Validation Results
+
+OSPF adjacency was successfully formed between FRRouting-1 and FRRouting-2
+over the 10.10.255.0/30 inter-router network.
+
+Validation steps:
+
+- Verified neighbor adjacency using `show ip ospf neighbor`
+- Confirmed learned routes via `show ip route ospf`
+- Confirmed end-to-end reachability by pinging department hosts
+  from a non-directly connected router
+
+This confirms correct control-plane and data-plane operation.
